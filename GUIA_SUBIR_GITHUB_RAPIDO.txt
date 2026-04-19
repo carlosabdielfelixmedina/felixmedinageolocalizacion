@@ -1,0 +1,119 @@
+GUIA RAPIDA - SUBIR PROYECTO A GITHUB
+Proyecto: geolocalizacion
+Usuario GitHub: carlosabdielfelixmedina
+Repo sugerido: felixmedinageolocalizacion
+
+==================================================
+OPCION 1 (LA MAS RAPIDA) - CON GITHUB CLI (gh)
+==================================================
+
+1) Abre PowerShell en la carpeta del proyecto:
+   cd C:\Users\fcarl\geolocalizacion
+
+2) Inicializa git (si aun no existe):
+   git init
+
+3) Crea .gitignore (MUY recomendado) para no subir entorno virtual, cache y DB local:
+   @"
+venv/
+.venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+"@ | Set-Content -Encoding utf8 .gitignore
+
+4) Primer commit:
+   git add .
+   git commit -m "Primer commit - proyecto geolocalizacion"
+
+5) Inicia sesion en GitHub CLI:
+   gh auth login
+
+6) Crea repo y sube en un solo comando:
+   gh repo create felixmedinageolocalizacion --public --source=. --remote=origin --push
+
+7) Verifica en navegador:
+   https://github.com/carlosabdielfelixmedina/felixmedinageolocalizacion
+
+
+==================================================
+OPCION 2 - SIN gh (WEB + GIT)
+==================================================
+
+1) Ve a GitHub y crea un repositorio nuevo:
+   Nombre: felixmedinageolocalizacion
+   URL esperada:
+   https://github.com/carlosabdielfelixmedina/felixmedinageolocalizacion.git
+
+2) En PowerShell (dentro de C:\Users\fcarl\geolocalizacion):
+   git init
+
+3) Crea .gitignore:
+   @"
+venv/
+.venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+"@ | Set-Content -Encoding utf8 .gitignore
+
+4) Commit inicial:
+   git add .
+   git commit -m "Primer commit - proyecto geolocalizacion"
+
+5) Rama principal:
+   git branch -M main
+
+6) Conecta remoto:
+   git remote add origin https://github.com/carlosabdielfelixmedina/felixmedinageolocalizacion.git
+
+7) Sube el codigo:
+   git push -u origin main
+
+
+==================================================
+SI DA ERROR DE REMOTE ORIGIN YA EXISTE
+==================================================
+
+Ejecuta:
+   git remote set-url origin https://github.com/carlosabdielfelixmedina/felixmedinageolocalizacion.git
+   git push -u origin main
+
+
+==================================================
+SI GIT PIDE AUTENTICACION
+==================================================
+
+- Usuario: carlosabdielfelixmedina
+- Password: usa un Personal Access Token (PAT), NO tu password de GitHub.
+
+Para crear PAT:
+GitHub -> Settings -> Developer settings -> Personal access tokens -> Tokens (classic)
+Permiso minimo recomendado: repo
+
+
+==================================================
+COMANDO TODO-EN-UNO (COPIAR/PEGAR)
+==================================================
+
+cd C:\Users\fcarl\geolocalizacion
+if (!(Test-Path .git)) { git init }
+@"
+venv/
+.venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+"@ | Set-Content -Encoding utf8 .gitignore
+git add .
+git commit -m "Primer commit - proyecto geolocalizacion"
+git branch -M main
+git remote remove origin 2>$null
+git remote add origin https://github.com/carlosabdielfelixmedina/felixmedinageolocalizacion.git
+git push -u origin main
+
+
+Listo. Con eso tu proyecto quedara publicado.

@@ -1,0 +1,8 @@
+   @"
+venv/
+.venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+"@ | Set-Content -Encoding utf8 .gitignore
