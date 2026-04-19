@@ -30,7 +30,14 @@ SECRET_KEY = 'django-insecure-y73e*ophs#j9)c&dwm#djkpbqdt1(!oo7j&ufv+@5%e8ndg=+g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'felixmedinaabackend.pythonanywhere.com',
+    'localhost',
+    '127.0.0.1',
+]
+
+if os.environ.get('DJANGO_ALLOWED_HOSTS'):
+    ALLOWED_HOSTS = [h.strip() for h in os.environ['DJANGO_ALLOWED_HOSTS'].split(',') if h.strip()]
 
 
 # Application definition
