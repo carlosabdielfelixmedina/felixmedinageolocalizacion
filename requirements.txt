@@ -1,8 +1,8 @@
-﻿asgiref==3.11.1
+﻿asgiref==3.7.1
 certifi==2026.2.25
 charset-normalizer==3.4.7
-Django==6.0.4
-djangorestframework==3.17.1
+Django==5.1.13
+djangorestframework==3.14.0
 geographiclib==2.1
 geopy==2.4.0
 googlemaps==4.10.0
