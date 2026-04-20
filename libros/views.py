@@ -1,3 +1,6 @@
+import json
+from decimal import Decimal
+from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -50,4 +53,24 @@ class BibliotecasCercanasView(APIView):
 
         resultados.sort(key=lambda x: x['distancia_km'])
         return Response(resultados)
+
+
+class MapaView(APIView):
+    def get(self, request):
+        bibliotecas = Biblioteca.objects.exclude(latitud=None, longitud=None)
+        datos = []
+        for b in bibliotecas:
+            datos.append({
+                'nombre': b.nombre,
+                'direccion_completa': b.direccion_completa,
+                'latitud': float(b.latitud),
+                'longitud': float(b.longitud),
+                'telefono': b.telefono,
+                'horario': b.horario,
+                'google_maps_url': b.google_maps_url,
+            })
+        return render(request, 'libros/mapa.html', {
+            'bibliotecas_json': json.dumps(datos),
+            'total': len(datos),
+        })
 
