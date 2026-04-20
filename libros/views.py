@@ -1,3 +1,14 @@
-from django.shortcuts import render
+from rest_framework import generics
+from .models import Biblioteca
+from .serializers import BibliotecaSerializer
 
-# Create your views here.
+
+class BibliotecaListCreateView(generics.ListCreateAPIView):
+    queryset = Biblioteca.objects.all()
+    serializer_class = BibliotecaSerializer
+
+
+class BibliotecaDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Biblioteca.objects.all()
+    serializer_class = BibliotecaSerializer
+
